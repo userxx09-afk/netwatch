@@ -110,6 +110,7 @@ jobs:
           set -o pipefail
           xcodebuild -project NetWatch.xcodeproj -scheme NetWatch -configuration Release \
             -destination 'generic/platform=iOS' -archivePath "$RUNNER_TEMP/NetWatch.xcarchive" \
+            CODE_SIGN_IDENTITY="$SIGNING_IDENTITY" \
             archive 2>&1 | tee archive.log
 
       - name: Export .ipa
