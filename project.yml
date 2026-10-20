@@ -1,0 +1,51 @@
+# Generate the Xcode project with XcodeGen:  brew install xcodegen && xcodegen
+name: NetWatch
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "16.0"
+
+packages:
+  NetWatchKit:
+    path: NetWatchKit
+
+targets:
+  NetWatch:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+    dependencies:
+      - package: NetWatchKit
+    configFiles:
+      Debug: Config/Signing.xcconfig     # bundle ID, team, signing style
+      Release: Config/Signing.xcconfig
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: "2"
+        MARKETING_VERSION: "1.0"
+        SWIFT_VERSION: "5.0"
+    entitlements:
+      path: App/NetWatch.entitlements
+      properties:
+        com.apple.developer.networking.wifi-info: true
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: NetWatch
+        UILaunchScreen: {}
+        UIRequiresFullScreen: true
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        # Lets you copy the logs off with Finder / Apple Configurator
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        NSLocationWhenInUseUsageDescription: Location access is only used to read the Wi-Fi network name and access point for network diagnostics.
+        NSLocalNetworkUsageDescription: Checks whether servers on your local network are reachable for network diagnostics.
+        NSAppTransportSecurity:
+          NSExceptionDomains:
+            captive.apple.com:
+              NSExceptionAllowsInsecureHTTPLoads: true

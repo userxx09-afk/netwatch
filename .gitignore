@@ -1,0 +1,9 @@
+NetWatch.xcodeproj/
+App/Info.plist
+App/NetWatch.entitlements
+Config/Signing.local.xcconfig
+build/
+*.ipa
+*.p12
+*.mobileprovision
+*.key
