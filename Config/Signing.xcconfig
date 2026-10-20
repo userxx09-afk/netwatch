@@ -1,0 +1,8 @@
+// Signing settings for the NetWatch app target only (keeps them off the NetWatchKit package).
+// Local builds: edit these. CI writes Signing.local.xcconfig, which overrides them.
+PRODUCT_BUNDLE_IDENTIFIER = com.example.netwatch
+DEVELOPMENT_TEAM =
+CODE_SIGN_STYLE = Automatic
+CURRENT_PROJECT_VERSION = 1
+
+#include? "Signing.local.xcconfig"

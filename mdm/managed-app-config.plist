@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Paste into your MDM's "App Configuration" for the NetWatch app (or your kiosk app if you embedded NetWatchKit).
+     Every key is optional. Use your MDM's variables for the label, e.g. $SERIALNUMBER or $DEVICENAME. -->
+<plist version="1.0">
+<dict>
+  <key>deviceLabel</key><string>$DEVICENAME</string>
+
+  <!-- Where logs are uploaded (collector/collector.py). Remove to keep logs on-device only. -->
+  <key>collectorURL</key><string>http://192.168.1.50:8080/ingest</string>
+  <key>collectorToken</key><string>change-me</string>
+
+  <!-- TCP targets checked every probe. Put YOUR kiosk backend / local server here. -->
+  <key>probeTargets</key>
+  <array>
+    <string>www.apple.com:443</string>
+    <string>your-kiosk-server.example.com:443</string>
+  </array>
+
+  <key>probeIntervalSeconds</key><integer>60</integer>
+  <key>outageProbeIntervalSeconds</key><integer>10</integer>
+  <key>keepAwake</key><true/>
+
+  <!-- Only if your kiosk is a web page: NetWatch will display it full screen. -->
+  <!-- <key>kioskURL</key><string>https://kiosk.example.com/</string> -->
+</dict>
+</plist>
